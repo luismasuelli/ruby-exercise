@@ -10,11 +10,15 @@ if ARGV.empty?
   exit(2)
 else
   Random.srand
-  result = Dice.parse ARGV
-  result[:details].each do |detail|
-    values = detail[:values].join(', ')
-    dice = detail[:count] == 1 ? 'die' : 'dice'
-    puts "Throwing #{detail[:count]} #{dice} of #{detail[:sides]} sides: " + values
+  begin
+    result = Dice.parse ARGV
+    result[:details].each do |detail|
+      values = detail[:values].join(', ')
+      dice = detail[:count] == 1 ? 'die' : 'dice'
+      puts "Throwing #{detail[:count]} #{dice} of #{detail[:sides]} sides: " + values
+    end
+    puts "Total: #{result[:total]}"
+  rescue ArgumentError => e
+    puts 'Input error: ' + e.message
   end
-  puts "Total: #{result[:total]}"
 end

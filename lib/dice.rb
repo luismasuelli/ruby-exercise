@@ -3,7 +3,7 @@ class Dice
   # Throws a die, perhaps many times, and reports its result.
   def self.throw_one(count, sides)
     if sides < 2 || count.zero?
-      raise ArgumentError, 'Invalid die spec: ' + spec
+      raise ArgumentError, "Invalid die count / sides: #{count} / #{sides}"
     end
 
     { count: count, sides: sides,
